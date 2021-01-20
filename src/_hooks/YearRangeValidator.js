@@ -1,5 +1,6 @@
 export default function validate(values) {
     let errors = {};
+    errors.valid = false;
     errors.disabled= true;
     errors.tenyears = false;
     errors.twoyears = false;
@@ -13,21 +14,32 @@ export default function validate(values) {
             values.today = new Date().getFullYear();
         }
         console.log(yearstart, yearend, values.today)
-
+        // this year
         if(yearstart === yearend && yearstart === values.today && yearend === values.today ){
             errors.thisyear = true;
+            errors.lastyear = false;
+            errors.twoyears = false;
+            errors.tenyears = true;
         }
+        // last year
         if(yearstart === values.today-1 && yearend === values.today-1 ){
+            errors.thisyear = false;
             errors.lastyear = true;
+            errors.twoyears = false;
+            errors.tenyears = false;
         }
-        if(yearstart === values.today-1 && yearend === values.today ){
-            errors.twoyears = true;
-        }
+        //last two years
         if(yearend === values.today &&  yearstart === values.today-1 ){
+            errors.thisyear = false;
+            errors.lastyear = false;
             errors.twoyears = true;
+            errors.tenyears = false;
         }
-
+        //last ten years
         if(yearend === values.today &&  yearstart === values.today-10 ){
+            errors.lastyear = false;
+            errors.lastyear = false;
+            errors.twoyears = false;
             errors.tenyears = true;
         }
     }
@@ -44,7 +56,7 @@ export default function validate(values) {
 
         console.log('validate',parseInt(values.yearstart), parseInt(values.yearend));
 
-        errors.yearend = 'Start year can not be greater than the end year';
+        errors.yearstart = 'Start year can not be greater than the end year';
         errors.disabled = true;
         if(values.yearend === values.yearstart){
 
@@ -52,13 +64,14 @@ export default function validate(values) {
             errors.yearend = 'Valid year range (1  year)';
             errors.disabled = false;
             checkyear();
+            errors.valid = true;
 
         }
 
     }else {
 
-        errors.yearend = 'Valid year range ('+(parseInt(values.yearend) - parseInt(values.yearstart))+" years)";
-        errors.disabled = false;
+         errors.disabled = false;
+        errors.valid = true;
         checkyear();
     }
     return errors;

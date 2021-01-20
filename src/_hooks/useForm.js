@@ -8,7 +8,7 @@ const useForm = (callback, validate) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
-        if (Object.keys(errors).length === 0 && isSubmitting) {
+        if (errors.valid === true && isSubmitting) {
             callback();
         }
     }, [errors, callback, isSubmitting]);
@@ -20,6 +20,7 @@ const useForm = (callback, validate) => {
         setIsSubmitting(true);
     };
     const handleInput = (event) =>{
+        console.log('handleInput', event.target.value);
         event.persist();
         setValues(values => ({ ...values, [event.target.name]: event.target.value }), setErrors(validate(values)));
 
@@ -39,6 +40,7 @@ const useForm = (callback, validate) => {
         if(!errors.tenyears && !errors.twoyears && !errors.lastyear && errors.thisyear){
             setSelectedValue(12);
         }
+
     };
     const handleSelect = (event) => {
 
@@ -67,9 +69,11 @@ const useForm = (callback, validate) => {
 
     };
     const handleChange = (event) => {
+        console.log(event) ;
 
         event.persist();
-        setValues(values => ({ ...values, [event.target.name]: event.target.value }));
+        setValues(values => ({ ...values, [event.target.name]: event.target.value }), setErrors(validate(values)));
+
 
 
 
