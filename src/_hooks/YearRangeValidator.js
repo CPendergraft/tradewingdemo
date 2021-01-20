@@ -14,7 +14,7 @@ export default function validate(values) {
         }
         console.log(yearstart, yearend, values.today)
 
-        if(yearstart === yearend && yearstart === values.today ){
+        if(yearstart === yearend && yearstart === values.today && yearend === values.today ){
             errors.thisyear = true;
         }
         if(yearstart === values.today-1 && yearend === values.today-1 ){
