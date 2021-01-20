@@ -21,14 +21,14 @@ const YearRangeForm = () => {
     return (
 
         <div className="container" >
+        <div className="formhold" >
 
             <form    onSubmit={handleSubmit} noValidate>
                 <div className="row" >
                     <div className="form-group col-12">
+                    <label className="label">Date Range</label>
                     <select className='form-control col-6' value={selectedValue} onChange={ handleSelect }>
-                        <option  value={12} key={12} >
-                            Free range
-                        </option>
+
                         <option  key={0} value={0}>
                             This Year
                         </option>
@@ -72,13 +72,14 @@ const YearRangeForm = () => {
 
                </div>
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 button_col">
                         <button  disabled={errors.disabled} className="btn btn-success btn-right">Apply</button>
                     </div>
 
                 </div>
             </form>
 
+        </div>
         </div>
     );
 };

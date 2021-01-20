@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import './_components/YearRangeForm'
+
 import YearRangeForm from "./_components/YearRangeForm";
 
 function App() {
