@@ -35,7 +35,7 @@ I did have a slight issue with sync on the onChange event, as it comes in with t
 ### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
->>>>>>> 2d2af303d0f421c2e3afef19aa6d613bc25ecafd
+
 
 ### `yarn build` fails to minify
 
