@@ -76,9 +76,22 @@ const useForm = (callback, validate) => {
 
         event.persist();
         setValues(values => ({ ...values, [event.target.name]: event.target.value }));
-        setErrors(validate(values))
 
 
+        if(errors.thisyear){
+
+            setSelectedValue(0 );
+        }
+        if(errors.lastyear){
+            setSelectedValue(1);
+        }
+        if(errors.twoyears){
+            setSelectedValue(2);
+        }
+        if(errors.tenyears){
+
+            setSelectedValue(10);
+        }
 
 
     };
