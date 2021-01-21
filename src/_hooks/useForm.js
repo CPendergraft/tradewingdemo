@@ -25,7 +25,7 @@ const useForm = (callback, validate) => {
         console.log('handleInput', event.target.value);
         event.persist();
         setValues(values => ({ ...values, [event.target.name]: event.target.value }  ));
-
+        setErrors(validate(values))
         if(errors.thisyear){
 
             setSelectedValue(0 );
@@ -37,13 +37,12 @@ const useForm = (callback, validate) => {
             setSelectedValue(2);
         }
         if(errors.tenyears){
-            setSelectedValue(3);
-        }
-        if(!errors.tenyears && !errors.twoyears && !errors.lastyear && errors.thisyear){
-            setSelectedValue(12);
+
+            setSelectedValue(10);
         }
 
-        setErrors(validate(values))
+
+
 
     };
     const handleSelect = (event) => {
