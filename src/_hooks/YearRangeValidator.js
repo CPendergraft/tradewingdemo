@@ -61,15 +61,16 @@ export default function validate(values) {
 
 
         errors.disabled = true;
-        if(values.yearend === values.yearstart){
-
+        if(parseInt(values.yearend) === parseInt(values.yearstart)){
 
             errors.yearend = 'Valid year range (1  year)';
             errors.disabled = false;
             checkyear();
             errors.valid = true;
+            errors.yearstart='';
 
         }else{
+
             errors.yearstart = 'Start date must proceed end date';
         }
 

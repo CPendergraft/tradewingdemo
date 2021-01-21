@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const useForm = (callback, validate) => {
     let today = new Date().getFullYear();
@@ -6,14 +6,32 @@ const useForm = (callback, validate) => {
     const [errors, setErrors] = useState({});
     const [selectedValue, setSelectedValue] = useState(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const updateDD = useCallback(
+        () => {
+            if(errors.thisyear){
 
+                setSelectedValue(1 );
+            }
+            if(errors.lastyear){
+                setSelectedValue(2);
+            }
+            if(errors.twoyears){
+                setSelectedValue(3);
+            }
+            if(errors.tenyears){
+
+                setSelectedValue(10);
+            };
+        },
+        [errors, setSelectedValue],
+    );
     useEffect(() => {
-        if (errors.valid === true && isSubmitting) {
-            callback();
+        if (errors.valid === true ) {
+            updateDD();
         }
 
 
-    }, [errors, callback, isSubmitting]);
+    }, [errors, updateDD, isSubmitting]);
 
     const handleSubmit = (event) => {
         if (event) event.preventDefault();
@@ -24,9 +42,9 @@ const useForm = (callback, validate) => {
 
     };
     const handleInput = (event) =>{
+
         setIsSubmitting(false);
         event.persist();
-        setValues(values => ({ ...values, [event.target.name]: event.target.value }  ));
         setErrors(validate(values));
 
         updateDD();
@@ -39,7 +57,7 @@ const useForm = (callback, validate) => {
     const handleSelect = (event) => {
 
         let val = event.target.value;
-        setSelectedValue(val);
+
 
 
         if(val==='1'){
@@ -55,40 +73,28 @@ const useForm = (callback, validate) => {
 
             setValues({yearstart:(today-10), yearend:(today)});
         }
+        setSelectedValue(val);
 
-     setErrors(validate(values))
 
 
 
 
     };
     const handleChange = (event) => {
-
+        console.log('evt', event.nativeEvent.target.value);
 
         event.persist();
-        setValues(values => ({ ...values, [event.target.name]: event.target.value }));
 
-        setSelectedValue(0);
+        setValues(values => ({ ...values, [event.nativeEvent.target.name]: event.nativeEvent.target.value }));
+        console.log('setValues', values);
+
         updateDD();
 
 
     };
-    const updateDD = function (){
-        if(errors.thisyear){
 
-            setSelectedValue(1 );
-        }
-        if(errors.lastyear){
-            setSelectedValue(2);
-        }
-        if(errors.twoyears){
-            setSelectedValue(3);
-        }
-        if(errors.tenyears){
 
-            setSelectedValue(10);
-        }
-    }
+
     return {
         handleInput,
         selectedValue,
