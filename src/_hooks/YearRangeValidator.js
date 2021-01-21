@@ -14,7 +14,7 @@ export default function validate(values) {
         if(values.today===undefined){
             values.today = new Date().getFullYear();
         }
-        console.log(yearstart, yearend, values.today)
+
         // this year
         if(yearstart === yearend && yearstart === values.today && yearend === values.today ){
             errors.thisyear = true;
@@ -44,11 +44,7 @@ export default function validate(values) {
             errors.tenyears = true;
         }
 
-        if(!errors.lastyear && errors.thisyear && !errors.twoyears && ! errors.tenyears){
-                if(yearstart != yearend ){
-                    errors.freerange = false;
-                }
-        }
+
     }
 
     if (!values.yearstart) {
@@ -61,13 +57,13 @@ export default function validate(values) {
 
     if (parseInt(values.yearend) <= parseInt(values.yearstart)) {
 
-        console.log('validate',parseInt(values.yearstart), parseInt(values.yearend));
+
 
 
         errors.disabled = true;
         if(values.yearend === values.yearstart){
 
-            console.log('validate 2', parseInt(values.yearstart), parseInt(values.yearend));
+
             errors.yearend = 'Valid year range (1  year)';
             errors.disabled = false;
             checkyear();
