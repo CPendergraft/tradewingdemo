@@ -53,7 +53,7 @@ const YearRangeForm = () => {
                     <div  className="form-group">
                         <label className="label">Start Year</label>
                         <div className="control">
-                            <input autoComplete="off"  pattern="[0-9]*" className='form-control' type="text"  maxLength={4}  name="yearstart" onChange={handleChange} onKeyUp={handleInput} value={values.yearstart } required />
+                            <input type="text" autoComplete="off"  pattern="[0-9]*" className='form-control'   maxLength={4}  name="yearstart" onChange={handleChange} onKeyUp={handleInput}   value={values.yearstart } required />
                             {errors.yearstart && (
                                 <p className="help is-danger">{errors.yearstart}</p>
                             )}
@@ -64,7 +64,7 @@ const YearRangeForm = () => {
                     <div className="form-group">
                         <label className="label">End Year</label>
                         <div className="control">
-                            <input type="text"  maxLength={4}  pattern="[0-9]*" className='form-control'  name="yearend" onChange={handleChange}  onKeyUp={handleInput}  value={values.yearend } required />
+                            <input type="text"  maxLength={4}  pattern="[0-9]*" className='form-control'  name="yearend" onChange={handleChange}  onKeyUp={handleInput}   value={values.yearend } required />
                         </div>
 
                     </div>

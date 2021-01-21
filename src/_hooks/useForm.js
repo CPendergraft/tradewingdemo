@@ -8,6 +8,7 @@ const useForm = (callback, validate) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const updateDD = useCallback(
         () => {
+            setSelectedValue(0 );
             if(errors.thisyear){
 
                 setSelectedValue(1 );
@@ -81,12 +82,12 @@ const useForm = (callback, validate) => {
 
     };
     const handleChange = (event) => {
-        console.log('evt', event.nativeEvent.target.value);
+
 
         event.persist();
 
         setValues(values => ({ ...values, [event.nativeEvent.target.name]: event.nativeEvent.target.value }));
-        console.log('setValues', values);
+
 
         updateDD();
 
