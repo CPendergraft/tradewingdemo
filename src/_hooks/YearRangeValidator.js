@@ -19,7 +19,7 @@ export default function validate(values) {
             errors.thisyear = true;
             errors.lastyear = false;
             errors.twoyears = false;
-            errors.tenyears = true;
+            errors.tenyears = false;
         }
         // last year
         if(yearstart === values.today-1 && yearend === values.today-1 ){
