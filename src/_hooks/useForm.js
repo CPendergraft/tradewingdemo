@@ -85,8 +85,15 @@ const useForm = (callback, validate) => {
 
 
         event.persist();
+        let name = event.nativeEvent.target.name;
+        let val = event.nativeEvent.target.value
+        let up = '';
+        //remove any alpha character before it displays,
+        // since you can't restrict on input, you hack the val before it is displayed
+        up = val.toLowerCase().replace(/\D/g, '');
 
-        setValues(values => ({ ...values, [event.nativeEvent.target.name]: event.nativeEvent.target.value }));
+
+        setValues(values => ({ ...values, [name]:up}));
 
 
         updateDD();
