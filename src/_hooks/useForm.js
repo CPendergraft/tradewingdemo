@@ -57,13 +57,13 @@ const useForm = (callback, validate) => {
         setSelectedValue(val);
         console.log('select-',val);
 
-        if(val==='0'){
+        if(val==='1'){
             console.log('case1');
             setValues({yearstart:today, yearend:today});
-        }else if(val==='1'){
+        }else if(val==='2'){
             console.log('case2');
             setValues({yearstart:(today-1), yearend:(today-1)});
-        }else if(val==='2'){
+        }else if(val==='3'){
             console.log('case3');
             setValues({yearstart:(today-1), yearend:(today)});
         }else if(val==='10'){

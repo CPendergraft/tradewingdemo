@@ -30,7 +30,7 @@ const YearRangeForm = () => {
                     <label className="label">Date Range</label>
                     <select className='form-control col-8' value={selectedValue} onChange={ handleSelect }>
                         <option   key={0} value={0}>
-                            -select a fixed range or choose open-
+                            -free form year range-
                         </option>
                         <option  key={1} value={1}>
                             This Year
