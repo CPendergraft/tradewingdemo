@@ -28,18 +28,20 @@ const YearRangeForm = () => {
                 <div className="row" >
                     <div className="form-group col-12">
                     <label className="label">Date Range</label>
-                    <select className='form-control col-6' value={selectedValue} onChange={ handleSelect }>
-
-                        <option  key={0} value={0}>
+                    <select className='form-control col-8' value={selectedValue} onChange={ handleSelect }>
+                        <option   key={0} value={0}>
+                            -select a fixed range or choose open-
+                        </option>
+                        <option  key={1} value={1}>
                             This Year
                         </option>
-                        <option key={1} value={1}>
+                        <option key={2} value={2}>
                             Last Year
                         </option>
-                        <option key={2} value={2}>
+                        <option key={3} value={3}>
                             Last 2 years
                         </option>
-                        <option key={3} value={10}>
+                        <option key={4} value={10}>
                             Last 10 years
                         </option>
                      </select>

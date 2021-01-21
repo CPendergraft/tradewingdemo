@@ -4,7 +4,7 @@ const useForm = (callback, validate) => {
     let today = new Date().getFullYear();
     const [values, setValues] = useState({yearstart:today, yearend:today, today:today});
     const [errors, setErrors] = useState({});
-    const [selectedValue, setSelectedValue] = useState(0);
+    const [selectedValue, setSelectedValue] = useState(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
@@ -26,20 +26,26 @@ const useForm = (callback, validate) => {
         event.persist();
         setValues(values => ({ ...values, [event.target.name]: event.target.value }  ));
         setErrors(validate(values))
+
+
+            setSelectedValue(0);
+
+
         if(errors.thisyear){
 
-            setSelectedValue(0 );
+            setSelectedValue(1 );
         }
         if(errors.lastyear){
-            setSelectedValue(1);
+            setSelectedValue(2);
         }
         if(errors.twoyears){
-            setSelectedValue(2);
+            setSelectedValue(3);
         }
         if(errors.tenyears){
 
             setSelectedValue(10);
         }
+
 
 
 
@@ -77,16 +83,16 @@ const useForm = (callback, validate) => {
         event.persist();
         setValues(values => ({ ...values, [event.target.name]: event.target.value }));
 
-
+        setSelectedValue(0);
         if(errors.thisyear){
 
-            setSelectedValue(0 );
+            setSelectedValue(1 );
         }
         if(errors.lastyear){
-            setSelectedValue(1);
+            setSelectedValue(2);
         }
         if(errors.twoyears){
-            setSelectedValue(2);
+            setSelectedValue(3);
         }
         if(errors.tenyears){
 

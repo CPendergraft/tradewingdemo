@@ -5,7 +5,8 @@ export default function validate(values) {
     errors.tenyears = false;
     errors.twoyears = false;
     errors.lastyear = false;
-    errors.thisyear = true;
+    errors.thisyear = false;
+    errors.freerange = false;
 
     function checkyear(){
         let yearstart = parseInt(values.yearstart);
@@ -37,10 +38,16 @@ export default function validate(values) {
         }
         //last ten years
         if(yearend === values.today &&  yearstart === values.today-10 ){
-            errors.lastyear = false;
+            errors.thisyear = false;
             errors.lastyear = false;
             errors.twoyears = false;
             errors.tenyears = true;
+        }
+
+        if(!errors.lastyear && errors.thisyear && !errors.twoyears && ! errors.tenyears){
+                if(yearstart != yearend ){
+                    errors.freerange = false;
+                }
         }
     }
 
