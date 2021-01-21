@@ -21,7 +21,7 @@ const useForm = (callback, validate) => {
             if(errors.tenyears){
 
                 setSelectedValue(10);
-            };
+            }
         },
         [errors, setSelectedValue],
     );
@@ -62,16 +62,16 @@ const useForm = (callback, validate) => {
 
         if(val==='1'){
 
-            setValues({yearstart:today, yearend:today});
+            setValues({yearstart:today, yearend:today, today:today});
         }else if(val==='2'){
 
-            setValues({yearstart:(today-1), yearend:(today-1)});
+            setValues({yearstart:(today-1), yearend:(today-1), today:today});
         }else if(val==='3'){
 
-            setValues({yearstart:(today-1), yearend:(today)});
+            setValues({yearstart:(today-1), yearend:(today), today:today});
         }else if(val==='10'){
 
-            setValues({yearstart:(today-10), yearend:(today)});
+            setValues({yearstart:(today-10), yearend:(today), today:today});
         }
         setSelectedValue(val);
 
