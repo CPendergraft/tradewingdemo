@@ -56,7 +56,7 @@ export default function validate(values) {
 
         console.log('validate',parseInt(values.yearstart), parseInt(values.yearend));
 
-
+        errors.yearstart = 'Start date must proceed end date';
         errors.disabled = true;
         if(values.yearend === values.yearstart){
 
