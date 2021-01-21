@@ -22,11 +22,11 @@ const useForm = (callback, validate) => {
     const handleInput = (event) =>{
         console.log('handleInput', event.target.value);
         event.persist();
-        setValues(values => ({ ...values, [event.target.name]: event.target.value }), setErrors(validate(values)));
+        setValues(values => ({ ...values, [event.target.name]: event.target.value }, () => setErrors(validate(values)) ));
 
         if(errors.thisyear){
 
-            setSelectedValue(0);
+            setSelectedValue(0, () => setErrors(validate(values)) );
         }
         if(errors.lastyear){
             setSelectedValue(1);
@@ -50,21 +50,21 @@ const useForm = (callback, validate) => {
 
         if(val==='0'){
             console.log('case1');
-            setValues({yearstart:today, yearend:today});
+            setValues({yearstart:today, yearend:today}, setErrors(validate(values)));
         }else if(val==='1'){
             console.log('case2');
-            setValues({yearstart:(today-1), yearend:(today-1)});
+            setValues({yearstart:(today-1), yearend:(today-1)}, setErrors(validate(values)));
         }else if(val==='2'){
             console.log('case3');
-            setValues({yearstart:(today-1), yearend:(today)});
+            setValues({yearstart:(today-1), yearend:(today)},setErrors(validate(values)));
         }else if(val==='10'){
             console.log('case4');
-            setValues({yearstart:(today-10), yearend:(today)});
+            setValues({yearstart:(today-10), yearend:(today)},setErrors(validate(values)));
         }
 
 
 
-        setErrors(validate(values));
+
 
 
     };
