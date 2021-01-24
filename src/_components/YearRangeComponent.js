@@ -1,10 +1,12 @@
-import React from 'react';
-import useYearRangeFormBasic from "../_hooks/useYearRangeFormBasic";
-import validate from '../_hooks/YearRangeValidatorBasic';
+import React, {useState} from 'react';
 
-const YearRangeForm = () => {
 
-    //here is a comment from the new branch
+const YearRangeForm = (props) => {
+
+
+
+    const [selectionHandler] = useState(props.selectionHandler);
+
 
     const {
 
@@ -15,12 +17,9 @@ const YearRangeForm = () => {
         handleSubmit,
         handleSelect,
         selectedValue,
-    } = useYearRangeFormBasic(login, validate);
+    } = props.useForm(selectionHandler, props.validate);
 
-    function login() {
 
-        console.log('No errors, submit callback called!');
-    }
 
     return (
 
@@ -32,21 +31,14 @@ const YearRangeForm = () => {
                     <div className="form-group col-12">
                     <label className="label">Date Range</label>
                     <select className='form-control col-8' value={selectedValue} onChange={ handleSelect }>
-                        <option   key={0} value={0}>
-                            -free form year range-
-                        </option>
-                        <option  key={1} value={1}>
-                            This Year
-                        </option>
-                        <option key={2} value={2}>
-                            Last Year
-                        </option>
-                        <option key={3} value={3}>
-                            Last 2 years
-                        </option>
-                        <option key={4} value={10}>
-                            Last 10 years
-                        </option>
+                        {props.options.map(item => (
+                            <option
+                                key={item.key}
+                                value={item.value}
+                            >
+                                {item.label}
+                            </option>
+                        ))}
                      </select>
                 </div>
                 </div>

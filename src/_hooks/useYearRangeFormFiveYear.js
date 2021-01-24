@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const useForm = (callback, validate) => {
+const useYearRangeFormBasic = (callback, validate) => {
     let today = new Date().getFullYear();
     const [values, setValues] = useState({yearstart:today, yearend:today, today:today});
     const [errors, setErrors] = useState({});
@@ -18,6 +18,9 @@ const useForm = (callback, validate) => {
             }
             if(errors.twoyears){
                 setSelectedValue(3);
+            }
+            if(errors.fiveyears){
+                setSelectedValue(5);
             }
             if(errors.tenyears){
 
@@ -39,6 +42,7 @@ const useForm = (callback, validate) => {
         setIsSubmitting(true);
         setErrors(validate(values));
         updateDD();
+        callback(values);
 
 
     };
@@ -70,7 +74,10 @@ const useForm = (callback, validate) => {
         }else if(val==='3'){
 
             setValues({yearstart:(today-1), yearend:(today), today:today});
-        }else if(val==='10'){
+        }else if(val==='5'){
+
+        setValues({yearstart:(today-5), yearend:(today), today:today});
+         }else if(val==='10'){
 
             setValues({yearstart:(today-10), yearend:(today), today:today});
         }
@@ -114,4 +121,4 @@ const useForm = (callback, validate) => {
     }
 };
 
-export default useForm;
+export default useYearRangeFormBasic;
