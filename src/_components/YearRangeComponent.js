@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 
 const YearRangeForm = (props) => {
 
 
 
-    const [selectionHandler] = useState(props.selectionHandler);
+    const selectionHandler =  props.selectionHandler;
 
 
     const {
